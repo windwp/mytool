@@ -59,9 +59,20 @@ namespace MMForm
             List<string> propNames = new List<string>();
             foreach (PropertyInfo prp in props)
                 propNames.Add(prp.Name);
+
             return propNames.ToArray();
         }
 
+
+        public static PropertyInfo[] PropertysFromType(Type t)
+        {
+         
+            PropertyInfo[] props = t.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            List<PropertyInfo> propNames = new List<PropertyInfo>();
+            foreach (PropertyInfo prp in props)
+                propNames.Add(prp);
+            return propNames.ToArray();
+        }
         public static PropertyInfo[] PropertysFromType(object atype)
         {
             if (atype == null) return new PropertyInfo[] { };
